@@ -1,0 +1,38 @@
+.activitybar {
+  width: var(--activitybar-width);
+  background: var(--bg-activitybar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.activity-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: color 0.15s;
+  border-left: 2px solid transparent;
+}
+
+.activity-btn:hover {
+  color: var(--text-primary);
+}
+
+.activity-btn.active {
+  color: var(--text-white);
+  border-left-color: var(--text-white);
+}
+
+.activity-spacer {
+  flex: 1;
+}

@@ -1,0 +1,21 @@
+
+.resize-handle {
+  background: transparent;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.resize-handle-horizontal {
+  width: 4px;
+  cursor: col-resize;
+}
+
+.resize-handle-vertical {
+  height: 4px;
+  cursor: row-resize;
+}
+
+.resize-handle:hover,
+.resize-handle.dragging {
+  background: var(--accent-blue);
+}

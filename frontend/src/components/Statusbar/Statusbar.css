@@ -1,0 +1,65 @@
+.statusbar {
+  height: var(--statusbar-height);
+  background: var(--bg-statusbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 12px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.statusbar-left,
+.statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  height: var(--statusbar-height);
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.status-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.status-item svg {
+  width: 12px;
+  height: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.online {
+  background: var(--accent-green);
+  box-shadow: 0 0 4px rgba(63, 185, 80, 0.5);
+}
+
+.status-dot.offline {
+  background: var(--accent-red);
+}
+
+.status-dot.loading {
+  background: var(--accent-yellow);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.4;
+  }
+}
