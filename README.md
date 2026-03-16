@@ -1,6 +1,5 @@
 # Epsilon IDE Engine 🦭💥
 
-**Status**: Barely holding together.
 
 Look, this isn't another wrapper around OpenAI API painted to look like VS Code. I built this because I am always hardware-constrained, and I wanted to help my friends out who also run on absolute peasant hardware (16GB RAM + 8GB VRAM). I wanted us to be able to run a real multi-tier LLM architecture (70B + 7B + 1.1B) without melting our motherboards.
 
