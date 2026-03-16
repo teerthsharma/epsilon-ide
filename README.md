@@ -41,3 +41,16 @@ If it crashes on boot, your NVMe drive probably doesn't support unbuffered DMA o
 
 ## License
 MIT. Do whatever you want, but don't blame me when the CUDA kernel panics and takes your display driver down with it.
+
+## Open Source Acknowledgements & Tools
+I didn't build this entirely from scratch. Aether Runtime and Epsilon IDE stand on the shoulders of the following massive open source projects:
+- **[DeepSeek Coder 33B](https://huggingface.co/deepseek-ai/deepseek-coder-33b-instruct)**: The Architect model for deep logic.
+- **[Qwen 2.5 Coder 7B](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct)**: The fast Ghost Text generator in VRAM.
+- **[TinyLlama 1.1B](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)**: The lightweight router / Foreman logic gate.
+- **[llama-cpp-python](https://github.com/abetlen/llama-cpp-python)** & **[llama.cpp](https://github.com/ggerganov/llama.cpp)**: For raw GGUF/CPU execution when the GPU is full.
+- **[tinygrad](https://github.com/tinygrad/tinygrad)**: For extreme lightweight tensor and KV cache operations without PyTorch bloat.
+- **[sqlite-vec](https://github.com/asg017/sqlite-vec)**: Ridiculously fast and dependency-free vector search embedded directly in SQLite.
+- **[FastAPI](https://fastapi.tiangolo.com/)**: REST bridge (where the 0-copy pipe isn't used).
+- **[pybind11](https://github.com/pybind/pybind11)**: Let me write real C++ extensions for Python.
+
+Run `python download_deps.py` to auto-download the required open source models to your `backend/models` directory.
