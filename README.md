@@ -22,11 +22,16 @@ To make them not kill each other over VRAM access, I had to write:
 - **`extreme_hardware.cpp`**: Bypasses the OS 4KB page allocator using Windows `SEC_LARGE_PAGES`. If the translation lookaside buffer (TLB) misses during an AST handoff, the 7B model drops frames.
 - **0-Copy Token Pump**: FastAPI was too bloated to stream the tokens to the frontend, so there's a raw C++ Windows Named Pipe (`\\.\pipe\sealmega_tokens`) screaming the tokens directly into the VS Code memory space. God help you if the pipe breaks.
 
+### Aether Link (The Multiplexer)
+The central nervous system bridging VS Code to the Python backends. I tried doing this synchronously at first, and it froze the Python GIL immediately. Now, Aether Link runs purely in an async event loop:
+- **Dual-Stream Concurrency**: The 7B Logic-Gate streams tokens instantly via WebSocket while the heavy 70B Architect runs verifying tasks in the background using `ProcessPoolExecutor`.
+- **Aggressive Memory Teardown**: None of this `torch.cuda.empty_cache()` relying on Python garbage collection. We explicitly destroy model objects and verify VRAM state before handing allocations back to the Foreman. If we don't, it all explodes.
+
 ## Features
 
 - **Real Filesystem Access**: Actually reads and writes your local files. Not sandboxed. Don't let the 70B model write `rm -rf`.
 - **Perplexity Rollback**: The system uses Cauchy-Schwarz pruning to speed up inference, but sometimes the model goes blind and hallucinates. I wrote a Shanon entropy safety net. If logit entropy spikes 1.8x, the layer recomputes. 
-- **sqlite-vec Context Oracle**: Ripped out ChromaDB because it ate 2GB of RAM just sitting there. Replaced with bare `sqlite3` using `sqlite-vec` to index Python AST nodes. Hard-capped at 512MB RAM.
+- **Clara Context Oracle (Tree-sitter & sqlite-vec)**: Ripped out ChromaDB because it ate 2GB of RAM just sitting there. Replaced it with bare `sqlite3` using `sqlite-vec`. But more importantly, **regex is dead**. We use Tree-sitter C-bindings to generate Abstract Syntax Trees instantly in RAM, extracting precise function signatures and structs to feed the 70B Architect. It's a compiler backend now, not a naive semantic search. Memory is hard-capped at 512MB RAM.
 
 ## How to run (If you hate yourself)
 
