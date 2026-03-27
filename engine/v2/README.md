@@ -404,8 +404,8 @@ Contributions are welcome, but understand:
 
 - **Issues**: GitHub issues for bug reports only (no usage questions)
 - **Pull requests**: Welcome, but review may be slow
-- **Email support**: Not available
-- **Discord/Slack**: Does not exist
+- **Email support**: lovekeshanand6@gmail.com
+- **Discord/Slack**: 1366730233570660442
 
 **If this breaks your system, you're on your own.** That's why the warnings exist.
 
